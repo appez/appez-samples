@@ -1,0 +1,59 @@
+Code Snippets:
+
+				MAP SERVICE:
++ Show Map
+Request:
+var SHOW_MAP_REQ = {
+			'locations' : [
+			  {
+				  'locLatitude': '22.6160',
+				  'locLongitude':'78.110',
+				  'locMarkerPin': '#ae005f',
+				  'locTitle':'Location 1',
+				  'locDescription': 'Description 1'
+			  },
+			  {
+				  'locLatitude': '22.6170',
+				  'locLongitude':'78.120',
+				  'locMarkerPin': '#0394d6',
+				  'locTitle':'Location 2',
+				  'locDescription': 'Description 2'
+			  }
+			 ],
+			 'mapDiv':'mapServices'
+		};
+appez.mmi.showMap(SHOW_MAP_REQ, globeScope.onClickMapShowCallback, globeScope);
+
+Response callback:
+function onClickMapShowCallback(smartEventResponse) {
+	appez.mmi.log('In onClickMapShowCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show map with directions
+Request:
+var SHOW_MAP_WITH_DIR_REQ = {
+			'locations' : [
+			 			  {
+			 				  'locLatitude': '22.6160',
+			 				  'locLongitude':'78.110',
+			 				  'locMarkerPin': '#FF0000',
+			 				  'locTitle':'Location 1',
+			 				  'locDescription': 'Description 1'
+			 			  },
+			 			  {
+			 				  'locLatitude': '22.6170',
+			 				  'locLongitude':'78.120',
+			 				  'locMarkerPin': '#0000FF',
+			 				  'locTitle':'Location 2',
+			 				  'locDescription': 'Description 2'
+			 			  }
+			 			 ],
+			 			'mapDiv':'mapServices',
+			 			'directionsDiv':'mapServices'
+		};
+appez.mmi.showMapWithDirections(SHOW_MAP_WITH_DIR_REQ, globeScope.onClickMapShowWithDirCallback, globeScope);
+
+Response callback:	
+function onClickMapShowWithDirCallback(smartEventResponse) {
+	appez.mmi.log('In onClickMapShowWithDirCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}

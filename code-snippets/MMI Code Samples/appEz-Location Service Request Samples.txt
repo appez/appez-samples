@@ -1,0 +1,32 @@
+Code Snippets:
+
+				LOCATION SERVICE:
++ Get fine location
+Request:
+var LOCATION_FINE = {
+			'locAccuracy':appez.mmi.constant.LOCATION_ACCURACY_FINE,
+			'locTimeout':2*60*1000,
+			'locLastKnown': true,
+			'loadingMessage':'Waiting for user location...'
+		};
+appez.mmi.getLocation(LOCATION_FINE,globeScope.onClickGetLocationFineCallback, globeScope);
+
+Response callback:
+function onClickGetLocationFineCallback(smartEventResponse){
+	appez.mmi.log('In onClickGetLocationFineCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Get coarse location
+Request:
+var LOCATION_COARSE = {
+			'locAccuracy':appez.mmi.constant.LOCATION_ACCURACY_COARSE,
+			'locTimeout':2*60*1000,
+			'locLastKnown': true,
+			'loadingMessage':'Waiting for user location...'
+		};
+appez.mmi.getLocation(LOCATION_COARSE,globeScope.onClickGetLocationCoarseCallback, globeScope);
+
+Response callback:
+function onClickGetLocationCoarseCallback(smartEventResponse){
+	appez.mmi.log('In onClickGetLocationCoarseCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse())+',exception type:'+smartEventResponse.getExceptionType()+',exception message:'+smartEventResponse.getExceptionMessage());
+}	

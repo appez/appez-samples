@@ -1,0 +1,34 @@
+Code Snippets:
+
+				CAMERA SERVICE:
++ Open Camera
+Request:
+var CAMERA_CAM_LAUNCH_REQ = {
+			'cameraDirection':appez.mmi.constant.CAMERA_BACK,
+			'imageCompressionLevel':50,
+			'imageEncoding':appez.mmi.constant.IMAGE_JPEG,
+			'imageReturnType':appez.mmi.constant.IMAGE_URL,
+			'imageFilter':appez.mmi.constant.STANDARD
+		};
+appez.mmi.captureImageFromCamera(CAMERA_CAM_LAUNCH_REQ, globeScope.onClickCameraLaunchCamCallback, globeScope);
+
+Response callback:
+function onClickCameraLaunchCamCallback(smartEventResponse) {
+	appez.mmi.log('In onClickCameraLaunchCamCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Open Gallery
+Request:
+var CAMERA_GALLERY_REQ = {
+			'cameraDirection':'',
+			'imageCompressionLevel':50,
+			'imageEncoding':appez.mmi.constant.IMAGE_JPEG,
+			'imageReturnType':appez.mmi.constant.IMAGE_URL,
+			'imageFilter':appez.mmi.constant.STANDARD
+		};
+appez.mmi.captureImageFromGallery(CAMERA_GALLERY_REQ, globeScope.onClickCameraLaunchGalleryCallback, globeScope);
+
+Response callback:
+function onClickCameraLaunchGalleryCallback(smartEventResponse) {
+	appez.mmi.log('In onClickCameraLaunchGalleryCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}

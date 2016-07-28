@@ -1,0 +1,549 @@
+@import "../../uic-dependency/bootstrap/less/bootstrap.less";
+
+@import "../../resources/fonts/flat-icon/flaticon.css";
+
+//@icon-font-path: "../../appez/uic/resources/fonts/"; // dev path
+@icon-font-path: "../fonts/"; // prod path
+  
+ //variables
+
+
+//global
+
+@white: #fff;
+@black: #000;
+
+//** Background color for `<body>`.
+@body-bg:               @black;
+@line-height-base:  1.2;
+//** Global text color on `<body>`.
+@text-color:            @white;
+@font-family-sans-serif: "Droid Sans";
+@input-color: @black;
+@brand-primary: @white;
+@label-color: @black;
+@border-radius-base:  0px;
+@font-size-base: 16px;
+
+@gradient-start: rgba(69,128,184,1);
+@gradient-end: rgba(33,84,124,1);
+@fixed-bar-bg: @gray-light;
+
+@focus-bg: rgba(33,84,124,1);
+
+//buttons
+
+@btn-default-bg:  @gray-lighter;
+@btn-default-border: transparent;
+
+// list group single liner list
+
+@list-group-bg: @black;
+
+
+@border-color: #ccc;
+
+.border-radius(@radius) {
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);  
+}
+
+.appearance(@appearance ) {
+  appearance: @appearance;
+  -webkit-appearance: @appearance; /* Safari and Chrome */  
+}
+
+
+
+.uic-page{
+     display: none; 
+     overflow-x: hidden;         
+}
+
+.uic-loader{
+  width: 50px;
+  height: 50px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJsb2FkZXItMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiCiAgIHdpZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNDAgNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgogIDxwYXRoIG9wYWNpdHk9IjAuMiIgZmlsbD0iIzAwMCIgZD0iTTIwLjIwMSw1LjE2OWMtOC4yNTQsMC0xNC45NDYsNi42OTItMTQuOTQ2LDE0Ljk0NmMwLDguMjU1LDYuNjkyLDE0Ljk0NiwxNC45NDYsMTQuOTQ2CiAgICBzMTQuOTQ2LTYuNjkxLDE0Ljk0Ni0xNC45NDZDMzUuMTQ2LDExLjg2MSwyOC40NTUsNS4xNjksMjAuMjAxLDUuMTY5eiBNMjAuMjAxLDMxLjc0OWMtNi40MjUsMC0xMS42MzQtNS4yMDgtMTEuNjM0LTExLjYzNAogICAgYzAtNi40MjUsNS4yMDktMTEuNjM0LDExLjYzNC0xMS42MzRjNi40MjUsMCwxMS42MzMsNS4yMDksMTEuNjMzLDExLjYzNEMzMS44MzQsMjYuNTQxLDI2LjYyNiwzMS43NDksMjAuMjAxLDMxLjc0OXoiLz4KICA8cGF0aCBmaWxsPSIjMDAwIiBkPSJNMjYuMDEzLDEwLjA0N2wxLjY1NC0yLjg2NmMtMi4xOTgtMS4yNzItNC43NDMtMi4wMTItNy40NjYtMi4wMTJoMHYzLjMxMmgwCiAgICBDMjIuMzIsOC40ODEsMjQuMzAxLDkuMDU3LDI2LjAxMywxMC4wNDd6Ij4KICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIKICAgICAgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIgogICAgICB0eXBlPSJyb3RhdGUiCiAgICAgIGZyb209IjAgMjAgMjAiCiAgICAgIHRvPSIzNjAgMjAgMjAiCiAgICAgIGR1cj0iMC41cyIKICAgICAgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDwvcGF0aD4KICA8L3N2Zz4=) center;
+  background-repeat: no-repeat;
+}
+
+.container{
+   padding:0;
+}
+
+.content{
+  padding-top: 0;
+}
+
+.group{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+   
+.active-page{
+     display: block;   
+}
+
+.back-page{  
+ 
+  font-size: 24px;
+}
+
+
+
+/* Generic class for displaying ellipsis after configured width is reached, User need to specify width of the element */
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.flex-box{
+    display: -webkit-box;    
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;  /* Defines direction how elements are placed in container  */   
+    -webkit-box-orient: horizontal;   /* Defines how elements are stacked in container i.e horizontally or vertically */   
+    
+    -webkit-flex-direction: row;  /* Defined whether elements are arranged in row or column */
+    -ms-flex-direction: row;
+    flex-direction: row;
+    
+    -webkit-flex-wrap: nowrap;  /* Defines whether container is single line or multi line */
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    
+    -webkit-box-pack: start;  /* Specifies where child elements of a box are placed when the box is larger than the size of the children */ 
+    -ms-flex-pack: start;
+    
+     -webkit-justify-content: flex-start; /* Defines how a browser distributes available space between and around elements when aligning flex items */
+    justify-content: flex-start;
+    
+   -webkit-align-content: stretch;  /*  Aligns a flex container's lines within the flex container when there is extra space on the cross-axis. This property has no effect on single line flexible boxes */
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    
+   -webkit-box-align: center; /* Specifies how to align the child elements of a box. */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+    
+   
+}
+
+.v-flex{
+  
+   -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-item{   
+  
+  -webkit-box-ordinal-group: 1; /* Specifies the display order of the child elements of a box */
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    
+   -webkit-box-flex: 0; /* Specifies whether the child elements of a box is flexible or inflexible in size */
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    
+    -webkit-align-self: auto; /*  It overrides the align-items value for specific flex items */
+    -ms-flex-item-align: auto;
+    align-self: auto;
+      
+  }
+  
+/* Wrapper for center aligning the child elements of flex container */  
+  
+   .center-align{
+  
+   -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center;
+}
+
+
+/* Wrapper for right aligning the child elements of flex container */
+
+ .right-align{
+  
+   -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-box-pack: end; 
+    -ms-flex-pack: end;
+}
+
+
+
+.android-gb{
+  
+.glyphicon{
+  
+  color: @white;
+}
+
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+
+.app-icon{
+ height: 20px;
+left: 16px;
+position: absolute;
+top: 6px;
+width: 20px;
+}
+
+.app-icon:first-child{
+  left: 3px;
+}
+
+.divider, .action-icon-holder{
+  
+  display: none;
+}
+
+.icon-holder{
+  
+  font-size: 3rem;
+  font-weight: 600;  
+}
+
+.icon-holder:hover{
+  text-decoration: none;
+  
+}
+
+.back-icon{
+  display: none;
+  position: absolute;
+  top: 13px;
+}
+
+
+
+
+
+.tile{
+   &:extend(.flex-box); 
+   &:extend(.v-flex); 
+   &:extend(.center-align);
+}
+
+.uic-page{  
+   -webkit-overflow-scrolling: touch; 
+}
+
+
+
+// top bar and bottom bar
+
+.navbar{
+ min-height: 30px;
+ 
+ .navbar-brand{
+    height: 30px;
+    line-height: 1px;
+ }
+}
+
+
+
+.navbar-fixed-top{
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,128,184,1)), color-stop(100%,rgba(33,84,124,1)));
+color: @black;  
+padding-left:15px; 
+
+ small{
+   font-size: 65%;
+ }
+ 
+ &:nth-child(2){   
+   top: 34px;
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@fixed-bar-bg), color-stop(100%,@fixed-bar-bg));
+ }
+ 
+ &:first-of-type{
+   display: none;
+ }
+
+  
+}
+
+.navbar-fixed-bottom{
+  
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@fixed-bar-bg), color-stop(100%,@fixed-bar-bg));
+  color: @black;
+ small{
+   font-size: 65%;
+ }
+}
+
+.glyphicon-chevron-left{
+color: @gray-lighter;
+padding-left: 3px;
+font-size: 16px;
+top: -4px;
+}
+
+
+.active{      
+    
+    color: @white;   
+    background-color: @focus-bg;
+    border-color: transparent !important;
+    margin-top: -1px !important;     
+  }
+  
+ 
+
+
+
+// Buttons
+
+.btn-default{
+ 
+ .appearance(button); 
+ 
+  display: block;
+  margin: 20px 20px 10px 20px;
+  padding: 0px 35px 0px 35px;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: 40px;
+  text-align: center;     
+  color: @black; 
+  
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(233,241,241,1)), color-stop(100%,rgba(192,193,192,1))); 
+  
+  &:focus,
+  &:active,
+  &.active{  
+    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,148,241,1)), color-stop(100%,rgba(0,94,153,1)));
+        
+    color: @white;  
+  }
+}
+
+
+// input
+
+.form-control{  
+  
+  .appearance(field);
+  .box-shadow(none);   
+  
+  &:focus,
+  &:active,
+  &.active{      
+     border-color: 1px solid @focus-bg;  
+  }  
+ 
+}
+
+// textarea
+
+textarea.form-control{
+ 
+  border: 1px solid @border-color;
+  .appearance(textarea);  
+  
+  &:focus,
+  &:active,
+  &.active{      
+     border: 1px solid @focus-bg;  
+  }  
+}
+
+
+
+// single liner list and multi liner list
+
+.list-group, .media-list{
+  font-size: 2.25rem;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.list-group-item{
+ border: initial;
+ border-bottom: 1px solid @border-color;
+ margin-bottom: initial; 
+}
+
+.list-group-item:first-child, .media:first-child{
+ border-top-color: transparent; 
+}
+
+.list-group-item:last-child, .media:last-child{
+ border-bottom-color: transparent;
+}
+
+
+//  multi list with thumbnail
+
+.media{
+ border-bottom: 1px solid @border-color;
+ margin-top:0; 
+ padding: 10px 15px; 
+ 
+ .media-heading{
+    margin-bottom:0;
+  }
+  
+  .media-object{
+    height: 45px;
+  }
+  
+  .media-desc{
+    font-size: 1.7rem;
+    color: @gray-light;
+  }
+  
+}
+
+
+
+// check box, radio
+
+ .checkbox {
+   
+   .appearance(none);
+   .border-radius(1px);
+   
+    display: inline-block;
+    position: relative;
+    padding: 9px;
+    margin: 0px 10px 0px 10px;
+    background-color: @gray-dark;
+    border: 1px solid @border-color;
+    height: 20px;
+    width: 20px;
+}
+
+ .checkbox:checked {
+    background-color: @gray-dark;
+    border: 1px solid @border-color;
+    color: @focus-bg;
+}
+
+ .checkbox:checked:after {
+    position: absolute;
+    content: '\2714';
+    font-size: 17px;
+    top: 1px;
+    left: 1px;
+    color: @focus-bg;
+    
+}
+
+ .radio {
+   
+   .appearance(none);
+   .border-radius(50px);
+   
+    display: inline-block;
+    position: relative;
+    padding: 9px;   
+    height: 26px;
+    width: 26px;
+   
+    margin: 0px 10px 0px 10px;
+    background-color: @gray-dark;
+    border: 1px solid @border-color;
+}
+
+ .radio:checked {
+    background-color: @gray-dark;
+    color: @focus-bg;
+    border: 1px solid @border-color;
+}
+
+ .radio:checked:after {
+   
+   .border-radius(50px);
+   
+    position: absolute;
+    content: ' ';
+    width: 12px;
+    height: 12px;   
+    top: 6px;
+    left: 6px;
+    font-size: 30px;
+    background-color: @focus-bg;
+    border: 1px solid @border-color;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+ 
+  margin-left: -16px;
+}
+
+
+.footer-offset{
+  
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.inline-label{
+ display: inline-block;
+ vertical-align: super;
+}
+
+
+.page-title{
+ font-size: 1.85rem;
+font-weight: bold;
+padding-top: 2px;
+
+}
+
+
+
+.btn-link{
+  color: @white;
+}
+
+.subgroup{
+  color: @white;
+  background-color: @focus-bg; 
+  font-size: 1.6rem;
+  padding: 3px 7px; 
+  padding-left: 15px;
+  margin-top: 5px 3px;
+}
+
+
+  
+}
+
+
+//@import "../../../../app/resources/styles/app.less";  // uic path
+@import "../../../../app/smartphone/resources/styles/app.less"; // smart web path
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+Code Snippets:
+
+				APP EVENT SERVICE:
++ Send App event
+Request:
+appez.mmi.sendAppEvent("My event data", appez.mmi.constant.APP_NOTIFY_MENU_ACTION);
+
+Response callback:
+No response callback received for App Events

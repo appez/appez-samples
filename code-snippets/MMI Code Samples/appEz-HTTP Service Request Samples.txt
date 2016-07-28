@@ -1,0 +1,99 @@
+Code Snippets:
+
+				HTTP SERVICE:
++ Send HTTP request
+var HTTP_REQUEST = {
+			'requestMethod':'GET',
+			//'requestUrl':'http://ip-api.com/json',
+			'requestUrl':'https://jsonplaceholder.typicode.com/users',
+			'requestHeaderInfo':'',
+			'requestPostBody':'',
+			'requestContentType':'application/xml',
+			'requestFileInformation':'',
+			'serverProxyAddress':'http://192.168.65.112:8080/mWeb/httpProxy.do'
+		};
+appez.mmi.executeHttpRequest(HTTP_REQUEST, globeScope.onClickHttpReqCallback, globeScope);
+
+Response callback:
+function onClickHttpReqCallback(smartEventResponse) {
+	appez.mmi.log('In onClickHttpReqCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Send HTTP request with save data
+Request:
+var HTTP_REQUEST_SAVE_DATA = {
+			'requestMethod':'GET',
+			//'requestUrl':'http://ip-api.com/json',
+			'requestUrl':'https://jsonplaceholder.typicode.com/users',
+			'requestHeaderInfo':'',
+			'requestPostBody':'',
+			'requestContentType':'application/xml',
+			'requestFileInformation':'',
+			//This property 'fileNameToSave' should not specify the extension of the file to be written	
+			'requestFileNameToSave': 'testFile',
+			'serverProxyAddress':'http://192.168.65.112:8080/mWeb/httpProxy.do'
+		};
+appez.mmi.executeHttpRequestWithSaveData(HTTP_REQUEST_SAVE_DATA, globeScope.onClickHttpReqWithSaveDataCallback, globeScope);
+
+Response callback:
+function onClickHttpReqWithSaveDataCallback(smartEventResponse) {
+	appez.mmi.log('In onClickHttpReqWithSaveDataCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ HTTP Put request
+Request:
+	var putRequestHeaders = [
+	                         {
+	                        	 'headerKey':'x-st',
+	                        	 'headerValue':'ST_ab23d1b0-cfc3-42a3-b1a8-b8b768814d1b'
+	                         }
+	                         ];
+	var HTTP_REQUEST_PUT = {
+			'requestMethod':'PUT',
+			//'requestUrl':'http://ip-api.com/json',
+			'requestUrl':'https://jsonplaceholder.typicode.com/users',
+			'requestHeaderInfo':'',
+			'requestPostBody':'[POST-BODY]',
+			'requestContentType':'application/json',
+			'requestFileInformation':'',
+			'serverProxyAddress':'http://192.168.65.112:8080/mWeb/httpProxy.do'
+		};
+	var putRequest = HTTP_REQUEST_PUT;
+	putRequest['requestHeaderInfo'] = putRequestHeaders;
+	appez.mmi.executeHttpRequest(putRequest, globeScope.onClickHttpPutReqCallback, globeScope);
+
+Response callback:
+function onClickHttpPutReqCallback(smartEventResponse){
+	appez.mmi.log('In onClickHttpPutReqCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ HTTP delete request
+Request:
+	var deleteRequestHeaders = [
+	                         {
+	                        	 'headerKey':'x-st',
+	                        	 'headerValue':'ST_ab23d1b0-cfc3-42a3-b1a8-b8b768814d1b'
+	                         },
+	                         {
+	                        	 'headerKey':'Content-Type',
+	                        	 'headerValue':'application/json'
+	                         }
+	                         ];
+	var HTTP_REQUEST_DELETE = {
+			'requestMethod':'DELETE',
+			//'requestUrl':'http://ip-api.com/json',
+			'requestUrl':'https://jsonplaceholder.typicode.com/users',
+			'requestHeaderInfo':'',
+			'requestPostBody':'',
+			'requestContentType':'application/json',
+			'requestFileInformation':'',
+			'serverProxyAddress':'http://192.168.65.112:8080/mWeb/httpProxy.do'
+		};						 
+	var deleteRequest = HTTP_REQUEST_DELETE;
+	deleteRequest['requestHeaderInfo'] = deleteRequestHeaders;
+	appez.mmi.executeHttpRequest(deleteRequest, globeScope.onClickHttpDeleteReqCallback, globeScope);
+
+Response callback:
+function onClickHttpDeleteReqCallback(smartEventResponse){
+	appez.mmi.log('In onClickHttpDeleteReqCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}

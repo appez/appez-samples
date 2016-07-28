@@ -1,0 +1,40 @@
+/* 
+  Localization.strings
+  iMobilizer
+
+  Created by impetus on 2/29/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/* Localizable Strings for iMobilizer */
+
+/* msg_exit */
+"msg_exit" = "Are you sure you want to exit ?";
+
+
+/* title_information */
+"title_information" = "Information";
+
+/* title_information */
+"im_msg_logout" = "Are you sure you want to Logout?";
+
+/* title_information */
+"msg_no_network" = "This application requires an active Internet connection. Please check your internet connection.";
+
+/* yes */
+"im_yes" = "Yes";
+
+/* no */
+"im_no" = "No";
+
+/* yes */
+"im_ok" = "OK";
+
+/*im_title_information*/
+"im_title_information" = "Information";
+
+
+
+
+//NSLocalizedString(@"About This Bill", nil)
+/* Localizable Strings for Application Using iMobilizer */

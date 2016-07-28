@@ -1,0 +1,30 @@
+Code Snippets:
+
+				SIGNATURE SERVICE:
++ Signature save image
+Request:
+	var SIGNATURE_SAVE_DATA = {
+			'signPenColor' : '#FF0000',
+			'signImageSaveFormat':appez.mmi.constant.IMAGE_JPEG
+		};
+	appez.mmi.captureAndSaveUserSign(SIGNATURE_SAVE_DATA,globeScope.onClickSignSaveImageCallback, globeScope);
+
+Response callback:
+function onClickSignSaveImageCallback(smartEventResponse){
+	appez.mmi.log('In onClickSignSaveImageCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Signature Get image data
+Request:
+	var SIGNATURE_IMAGE_DATA = {
+			'signPenColor' : '#FF0000',
+			'signImageSaveFormat':appez.mmi.constant.IMAGE_JPEG
+		};
+	appez.mmi.captureAndGetUserSign(SIGNATURE_IMAGE_DATA,globeScope.onClickSignImageDataCallback, globeScope);
+
+Response callback:
+function onClickSignImageDataCallback(smartEventResponse){
+	var imageResponse = smartEventResponse.getServiceResponse();
+	appez.mmi.log('In onClickSignImageDataCallback ...........'+JSON.stringify(imageResponse));
+	appez.mmi.log('Image DATA:' + imageResponse[appez.mmi.constant.MMI_RESPONSE_PROP_SIGN_IMAGE_DATA]);
+}

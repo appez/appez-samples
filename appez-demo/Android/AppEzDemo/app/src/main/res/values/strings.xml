@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">appEz Demo</string>
+    <string name="notification_name">appEz Demo</string>
+    <string name="im_yes">Yes</string>
+    <string name="im_no">No</string>
+    <string name="im_ok">OK</string>
+    <string name="im_cancel">Cancel</string>
+    <string name="im_msg_logout">Are you sure you want to logout?</string>
+    <string name="im_title_information">Confirmation</string>
+    <string name="im_title_select_item">Select Item</string>
+    <string name="im_title_select_items">Select Item(s)</string>
+    <string name="page_url">file:///android_asset/www/index.html</string>
+</resources>

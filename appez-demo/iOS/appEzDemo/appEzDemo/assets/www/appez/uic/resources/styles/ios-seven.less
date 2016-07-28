@@ -1,0 +1,898 @@
+@import "../../uic-dependency/bootstrap/less/bootstrap.less";
+@import "../../resources/fonts/flat-icon/flaticon.css";
+
+@icon-font-path: "../../appez/uic/resources/fonts/"; // dev path
+//@icon-font-path: "../fonts/"; // prod path
+  
+ //variables
+
+
+//global
+
+@white: #fff;
+@black: #000;
+@green: #53d76a;
+
+@font-family-sans-serif: "HelveticaNeue-Medium";
+@input-color: @black;
+@brand-primary: @white;
+@label-color: @black;
+@border-radius-base:  0;
+@font-size-base: 16px;
+
+@grid-float-breakpoint: 320px; // need to test for more scenerio
+
+@fixed-bar-bg: @gray-light;
+
+@animation-delay: 500ms;
+
+@title-bar-height: 44px;
+@group-space: 30px;
+@content-padding: @title-bar-height + @group-space;
+
+//buttons
+
+@btn-default-bg:  @gray-lighter;
+@btn-default-border: @border-color;
+
+@focus-bg: rgb(21, 125, 251);
+@border-color: #c8c7cc;
+@media-desc-color: #808080;
+
+.border-radius(@radius) {
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);  
+}
+
+.appearance(@appearance ) {
+  appearance: @appearance;
+  -webkit-appearance: @appearance; /* Safari and Chrome */  
+}
+
+body{
+  
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  word-wrap: break-word;
+  -webkit-text-size-adjust: none;
+          text-size-adjust: none;
+  height: 100%;
+  font-weight: 300;
+  line-height: 1;
+  color: rgb(0, 0, 0);
+  background-color: #EFEFF4;
+  
+   
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* Prevent any object from being highlighted upon touch event */
+    -webkit-touch-callout: none;  /* Disables the default callout shown when you touch and hold a touch target e.g details on link touch */
+    -webkit-text-size-adjust: none; /* Does't allow user to inflate the size of the text */ 
+    -webkit-user-select: none;  /* Doesn't allow user to select the text or any element on screen */  
+}
+
+
+
+
+.uic-wrapper{
+  
+  
+  
+}
+
+ .scroll-wrap{
+    
+    position: absolute;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+    
+  }
+  
+  .content{
+    
+    width: 100%;
+height: 100%;
+padding-top: @content-padding;
+overflow-y: scroll;
+-webkit-overflow-scrolling: touch;
+    }
+  
+
+
+
+.uic-page{       
+  
+     display: none;
+     overflow-x: hidden;
+     padding-left: 0;
+     padding-right: 0;
+    
+    
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;    
+     height: 100%;
+    /* -webkit-transform: translate3d(0, 0, 0);
+     transform: translate3d(0, 0, 0); */
+
+  
+         
+}
+
+.uic-loader{
+  width: 50px;
+  height: 50px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJsb2FkZXItMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiCiAgIHdpZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNDAgNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgogIDxwYXRoIG9wYWNpdHk9IjAuMiIgZmlsbD0iIzAwMCIgZD0iTTIwLjIwMSw1LjE2OWMtOC4yNTQsMC0xNC45NDYsNi42OTItMTQuOTQ2LDE0Ljk0NmMwLDguMjU1LDYuNjkyLDE0Ljk0NiwxNC45NDYsMTQuOTQ2CiAgICBzMTQuOTQ2LTYuNjkxLDE0Ljk0Ni0xNC45NDZDMzUuMTQ2LDExLjg2MSwyOC40NTUsNS4xNjksMjAuMjAxLDUuMTY5eiBNMjAuMjAxLDMxLjc0OWMtNi40MjUsMC0xMS42MzQtNS4yMDgtMTEuNjM0LTExLjYzNAogICAgYzAtNi40MjUsNS4yMDktMTEuNjM0LDExLjYzNC0xMS42MzRjNi40MjUsMCwxMS42MzMsNS4yMDksMTEuNjMzLDExLjYzNEMzMS44MzQsMjYuNTQxLDI2LjYyNiwzMS43NDksMjAuMjAxLDMxLjc0OXoiLz4KICA8cGF0aCBmaWxsPSIjMDAwIiBkPSJNMjYuMDEzLDEwLjA0N2wxLjY1NC0yLjg2NmMtMi4xOTgtMS4yNzItNC43NDMtMi4wMTItNy40NjYtMi4wMTJoMHYzLjMxMmgwCiAgICBDMjIuMzIsOC40ODEsMjQuMzAxLDkuMDU3LDI2LjAxMywxMC4wNDd6Ij4KICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIKICAgICAgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIgogICAgICB0eXBlPSJyb3RhdGUiCiAgICAgIGZyb209IjAgMjAgMjAiCiAgICAgIHRvPSIzNjAgMjAgMjAiCiAgICAgIGR1cj0iMC41cyIKICAgICAgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDwvcGF0aD4KICA8L3N2Zz4=) center;
+  background-repeat: no-repeat;
+}
+ 
+.uic-page.left {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+ 
+.uic-page.center {
+   /* -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); */
+}
+ 
+.uic-page.right {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+ 
+.uic-page.transition {
+    -webkit-transition-duration: @animation-delay;
+    transition-duration: @animation-delay;
+}
+
+.uic-page.modal-animation{
+  background-color: inherit;
+}
+
+.uic-page.bottom{
+  
+   -webkit-transform: translate3d(0, 98%, 0);
+   transform: translate3d(0, 98%, 0);
+}
+
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+   
+.active-page{
+     display: block;
+}
+
+
+
+/* Generic class for displaying ellipsis after configured width is reached, User need to specify width of the element */
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flex-box{
+    display: -webkit-box;    
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;  /* Defines direction how elements are placed in container  */   
+    -webkit-box-orient: horizontal;   /* Defines how elements are stacked in container i.e horizontally or vertically */   
+    
+    -webkit-flex-direction: row;  /* Defined whether elements are arranged in row or column */
+    -ms-flex-direction: row;
+    flex-direction: row;
+    
+    -webkit-flex-wrap: nowrap;  /* Defines whether container is single line or multi line */
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    
+    -webkit-box-pack: start;  /* Specifies where child elements of a box are placed when the box is larger than the size of the children */ 
+    -ms-flex-pack: start;
+    
+     -webkit-justify-content: flex-start; /* Defines how a browser distributes available space between and around elements when aligning flex items */
+    justify-content: flex-start;
+    
+   -webkit-align-content: stretch;  /*  Aligns a flex container's lines within the flex container when there is extra space on the cross-axis. This property has no effect on single line flexible boxes */
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    
+   -webkit-box-align: center; /* Specifies how to align the child elements of a box. */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+    
+   
+}
+
+.v-flex{
+  
+   -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-item{   
+  
+  -webkit-box-ordinal-group: 1; /* Specifies the display order of the child elements of a box */
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    
+   -webkit-box-flex: 0; /* Specifies whether the child elements of a box is flexible or inflexible in size */
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    
+    -webkit-align-self: auto; /*  It overrides the align-items value for specific flex items */
+    -ms-flex-item-align: auto;
+    align-self: auto;
+      
+  }
+  
+/* Wrapper for center aligning the child elements of flex container */  
+  
+   .center-align{
+  
+   -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center;
+}
+
+
+/* Wrapper for right aligning the child elements of flex container */
+
+ .right-align{
+  
+   -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-box-pack: end; 
+    -ms-flex-pack: end;
+}
+
+
+.ios-seven{
+  
+.glyphicon{
+  
+  color: @black;
+}
+
+.app-icon{
+  height: 25px;
+  margin-top: -10px;
+}
+
+.tile{
+   &:extend(.flex-box); 
+   &:extend(.v-flex); 
+   &:extend(.center-align);
+}
+
+.fixfixed .navbar-fixed-top{
+  position: absolute;
+}
+
+
+.group{
+
+    margin-bottom: @group-space;
+    padding: initial;  
+    padding-left: 15px;
+
+    background-color: @white;  
+    border: 1px solid @border-color;
+    border-left: initial;
+    border-right: initial;  
+    overflow: visible;
+    line-height: 1.5em;
+    
+    .form-control, textarea.form-control{
+    
+       width: 96%;
+    }
+}
+
+
+
+
+// top bar and bottom bar
+
+
+.icon-holder:hover{
+  text-decoration: none;
+}
+
+
+
+.action-icon-holder{
+
+  color: @focus-bg;
+ font-weight: 600;
+ text-decoration: none;
+ 
+ text-align: right;
+position: absolute;	
+right: 8px;
+}
+
+.navbar{
+ min-height: 40px;
+ 
+ .navbar-brand{
+    height: 40px;
+    line-height: 10px;
+ }
+}
+
+
+.navbar-fixed-top{
+  
+  height: 44px;
+  position: fixed;
+  top:0;
+  height: @title-bar-height;
+  line-height: 44px;
+  width: 100%;
+  padding-top: 0;
+  background-color: rgba(248, 248, 248, 0.9);
+  background-image: linear-gradient(0deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  z-index: 10;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+
+ small{
+   font-size: 65%;
+ }
+ 
+ &:nth-child(2){   
+   top: 50px;
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f4f6), color-stop(100%,#9fa2a8));
+ }
+  
+}
+
+.navbar-fixed-top .navbar-header, .navbar-fixed-top .navbar-brand{
+
+  float: initial;
+  text-align: center;
+
+}
+
+
+.navbar-fixed-bottom{
+  height: 44px;
+  text-align: center;
+  background-color: rgba(248, 248, 248, 0.9);
+  background-image: linear-gradient(180deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top center;
+
+  z-index: 100; 
+
+ small{
+   font-size: 65%;
+ }
+  
+}
+
+.glyphicon-chevron-left{
+color: @gray-lighter;
+font-size: 15px;
+top: -4px;
+}
+
+.glyphicon-chevron-right{
+display: inline-block;
+color: @gray-light;
+float: right;
+}
+
+
+
+
+
+.app-icon{
+  
+position: absolute;
+display: inline-block;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+font-size: 17px;
+padding: 0;
+font-weight: 300;
+height: 44px;
+line-height: 44px;
+color: @gray-light;
+max-width: 140px;
+padding-left: 23px;
+
+background-position: left bottom;
+background-size: 24px 44px;
+background-repeat: no-repeat;
+    
+}
+
+
+ .back-icon {
+font-family: "Flaticon";
+position: absolute;
+top: 16px;
+left: 0px;    
+}
+
+.back-icon:before {
+color: #157dfb;
+font-size: 2.5rem;
+margin-left: 3px;
+content: "\e009";
+}
+
+.icon-forward {
+
+ &:extend(.app-icon); 
+
+background-image: url(../img/listArrow.svg);
+color: @gray-light;
+top: 9px;
+right: 3px;
+    
+}
+ 
+
+
+
+
+
+// Buttons
+
+.btn-default{
+
+ .appearance(button);
+ .border-radius(5px);
+
+ 
+    padding: 8px;     
+    color: @focus-bg;
+    background-color: @white;
+    width: 96%;
+    
+  
+  &:focus,
+  &:active,
+  &.active{  
+         
+    outline: initial;
+    outline-offset: initial;
+    .box-shadow(none);
+    background-color: @border-color;
+     
+  }
+}
+
+.btn-link{
+  
+  color: @focus-bg;
+  
+  
+  &:focus,
+  &:active,
+  &.active{
+  
+    text-decoration: none;
+  }
+  
+
+}
+
+.divider{
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+
+// input
+
+.form-control, textarea.form-control{
+  
+   .appearance(field); 
+   .box-shadow(none);
+   .border-radius(0);
+   
+   display: block;
+   position: relative;
+
+   
+   font-weight: 300; 
+   padding: 6px 0 6px 0;   
+   background-color: transparent;
+   -webkit-tap-highlight-color: transparent;
+   background-image: linear-gradient(0deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
+   background-size: 100% 1px;
+   background-repeat: no-repeat;
+   background-position: bottom;
+   
+   border: initial;
+        
+    color: @black;
+   
+  
+  &:focus,
+  &:active,
+  &.active{      
+      
+  }  
+ 
+}
+
+// textarea
+
+textarea.form-control{
+ 
+  
+  min-height: 70px;
+  padding: 5px;
+  color: @black;  
+  
+  &:focus,
+  &:active,
+  &.active{      
+      
+  }  
+}
+
+
+
+
+// single liner list
+
+.list-group.group, .media-list.group{
+   padding-left: initial;
+   font-weight: 600;
+
+}
+
+.media,.list-group-item{
+ border-color: transparent;  
+ padding: initial;
+ padding-left: 15px;
+ padding-top: 7px;
+ margin-bottom: initial;
+  border: initial;
+  font-weight: normal;
+  font-size: 1.6rem;
+ 
+
+ &:active{     
+     background-color: @border-color;
+      
+  }
+  
+  .ellipsis{
+    width: 91%;
+  }
+  
+  .glyphicon.glyphicon-chevron-right{
+  
+     margin-top: -2.3rem;
+  }
+  
+
+
+}
+
+.media-desc{
+  
+    font-size: 1.45rem;
+     color: @media-desc-color;
+      margin-top: -5px;
+  }
+
+.list-group-item.disclosure, .media-body.disclosure{
+
+background-image: url(../img/listArrow.svg);
+background-size: 24px 24px;
+
+background-repeat: no-repeat;
+background-position: right center;
+padding-right: 5%;
+
+}
+
+
+
+//  multi list with thumbnail
+
+
+
+.media{
+ 
+ margin-top: 0;
+ &:active{     
+     background: @border-color;
+     
+  }
+  
+  .divider{
+    margin-top: 7px;
+    margin-bottom: 0;
+  }
+
+ 
+ .media-object{
+   border-radius: 10px;
+ }
+ 
+  
+}
+
+
+
+.media-heading{
+
+  font-size: 1.8rem;
+
+  margin: 0;
+}
+
+
+// check box, radio
+
+.checkbox {
+  .appearance(none);
+  
+  display: inline-block;
+  
+  background-color: darken(@white, 2%);
+  border: 1px solid transparent;
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 1px @border-color;
+  cursor: pointer;
+  height: 28px;
+  position: relative;
+  transition: border .20s .10s,
+              box-shadow .20s .1s,
+              padding .20s;
+  width: 44px;
+  vertical-align: top;
+  
+  &:after {
+    background-color: @white;
+    border: 1px solid @gray;
+    border-radius: 24px;
+    box-shadow: inset 0 -3px 3px hsla(0,0%,0%,.025),
+                0 1px 4px hsla(0,0%,0%,.15),
+                0 4px 4px hsla(0,0%,0%,.1);
+    content: '';
+    display: block;
+    height: 24px;
+    left: 0;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    transition: border .20s .10s,
+                left .20s .1s,
+                right .10s .150s;
+  }
+  &:checked {
+    border-color: @green;
+    box-shadow: inset 0 0 0 13px @green;
+    padding-left: 18px;
+    transition: border .20s,
+                box-shadow .20s,
+                padding .20s .10s;
+  
+    &:after {
+      border-color: @green;
+      left: 16px;
+      right: 0;
+      transition: border .20s,
+                  left .10s .20s,
+                  right .20s .150s;
+    }
+  }
+}
+
+.radio{
+
+ display: inline-block;
+height: 25px;
+vertical-align: top;
+}
+
+
+.footer-offset{
+  
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.inline-label{
+ display: inline-block;
+ vertical-align: middle;
+}
+
+.page-title{
+ padding-left: 2px;
+ font-weight: 600;
+}
+
+.page-title:first-child{ 
+ padding-left: 8px;
+}
+
+
+
+.subgroup{
+   padding: 0 15px;
+
+margin-bottom:8px;
+color: @gray;
+}
+
+
+
+// animnations
+
+
+
+.slide-from-left {
+  -webkit-animation: slideFromLeft @animation-delay forwards ease-in-out;
+  -o-animation: slideFromLeft @animation-delay forwards ease-in-out;
+  animation: slideFromLeft @animation-delay forwards ease-in-out;
+}
+
+.slide-to-left {
+  -webkit-animation: slideToLeft @animation-delay forwards ease-in-out;
+  -o-animation: slideToLeft @animation-delay forwards ease-in-out;
+  animation: slideToLeft @animation-delay forwards ease-in-out;
+}
+
+.slide-from-right {
+  -webkit-animation: slideFromRight @animation-delay forwards ease-in-out;
+  -o-animation: slideFromRight @animation-delay forwards ease-in-out;
+  animation: slideFromRight @animation-delay forwards ease-in-out;
+}
+
+.slide-to-right {
+  -webkit-animation: slideToRight @animation-delay forwards ease-in-out;
+  -o-animation: slideToRight @animation-delay forwards ease-in-out;
+  animation: slideToRight @animation-delay forwards ease-in-out;
+}
+
+
+@-webkit-keyframes slideFromLeft {
+  from {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-o-keyframes slideFromLeft {
+  from {
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes slideToLeft {
+  to {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-o-keyframes slideToLeft {
+  to {
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideToLeft {
+  to {
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+
+
+
+
+@-webkit-keyframes slideFromRight {
+  from {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-o-keyframes slideFromRight {
+  from {
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-webkit-keyframes slideToRight {
+  to {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-o-keyframes slideToRight {
+  to {
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideToRight {
+  to {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+
+
+
+
+  
+}
+
+
+//@import "../../../../app/resources/styles/app.less"; uic path
+@import "../../../../app/smartphone/resources/styles/app.less"; // smart web path
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+Code Snippets:
+
+				PERSISTENCE SERVICE:
++ Save data
+Request:	
+		var PERSIST_SAVE_REQ = {
+			'storeName':'appez_demo_persist_store',
+			'requestData':[
+			  {
+				'key':'key 1',
+				'value':'value 1'
+			  },        
+			  {
+				  'key':'key 2',
+				  'value':'value 2'
+			  },       
+			  {
+				  'key':'key 3',
+				  'value':'value 3'
+			  }      
+			 ]
+		};
+		PERSIST_SAVE_REQ['requestData'] = [
+											{
+												'key':'key1',
+												'value':'value1'
+											}     
+											];
+
+	appez.mmi.saveData(PERSIST_SAVE_REQ, globeScope.onClickPersistSaveDataCallback, globeScope);
+
+Response callback:
+function onClickPersistSaveDataCallback(smartEventResponse) {
+	appez.mmi.log('In onClickPersistSaveDataCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Retrieve data
+Request:
+	var PERSIST_RETRIEVE_REQ = {
+			'storeName':'appez_demo_persist_store',
+			'requestData':null
+		};
+		PERSIST_RETRIEVE_REQ['requestData'] = [
+		 	                 	             	{
+													'key':'key1'
+		 	                 	             	}     
+		 	                 	             ];
+
+	appez.mmi.retrieveData(PERSIST_RETRIEVE_REQ, globeScope.onClickPersistRetrieveDataCallback, globeScope);
+
+Response callback:	
+function onClickPersistRetrieveDataCallback(smartEventResponse) {
+	appez.mmi.log('In onClickPersistRetrieveDataCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Delete data
+Request:
+		var PERSIST_DELETE_REQ = {
+			'storeName':'appez_demo_persist_store',
+			'requestData': [
+			 			   {
+							   'key':'key 1'
+						   } 
+						   ]
+		};
+		PERSIST_DELETE_REQ['requestData'] = [
+		 	                 	             {
+												'key':keyToDelete
+		 	                 	             }     
+		 	                 	            ];
+	appez.mmi.deleteData(PERSIST_DELETE_REQ, globeScope.onClickPersistDeleteDataCallback, globeScope);
+
+Response callback:
+function onClickPersistDeleteDataCallback(smartEventResponse) {
+	appez.mmi.log('In onClickPersistDeleteDataCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}		

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens>
+		<screen>
+		    <name>LoginControllerTemplate</name>
+		    <content>
+		    <![CDATA[
+			<div class="navbar navbar-fixed-top">
+				<div class="container">
+
+					<div class="navbar-header">
+						<div class="navbar-brand back-page">
+							<a class="icon-holder" href="#">
+							
+							</a>
+							<label class="page-title  screen-title">Login</label>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="scroll-wrap">
+				   <div class="content text-center">
+					  <form class="group" role="form" style="margin-top:4%">
+					  
+						 <div class="form-group">
+							<input type="text" maxlength="20" required class="form-control remove-error" id="enteredusername" placeholder="Username">
+							<input type="password" maxlength="20" required class="form-control remove-error" id="enteredusername" placeholder="Password">
+						 </div>						 
+						 <div class="form-group">
+							<button type="button" style="margin-top:10px;" class="btn btn-default btn-block nav-next btn-submit center-block goToHome">
+							Log In
+							</button>
+						 </div>
+
+						 <div class="title text-center" style="margin-bottom:4%; margin-top:8%">Not Registered Yet ?</div>
+
+						 <div class="form-group">
+							<button type="button" class="btn btn-default btn-block nav-next btn-submit center-block register-user-nav goToRegister">
+							Register
+							</button>
+						 </div>
+					  </form>
+
+
+				   </div>
+				</div>
+			]]>
+			</content>
+	</screen>
+</screens>

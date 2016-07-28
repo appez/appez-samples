@@ -1,0 +1,101 @@
+Code Snippets:
+
+				DB SERVICE:
++ Open DB 
+Request:
+var DB_OPEN_REQ = {
+			'appDB':'appez_demo_db',
+			'shouldEncrypt':false
+		};
+appez.mmi.openDatabase(DB_OPEN_REQ, globeScope.onClickDbOpenCallback, globeScope);
+
+Response callback:
+function onClickDbOpenCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbOpenCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Create Table
+Request:
+var DB_CREATE_TABLE_REQ = {
+			'appDB':'appez_demo_db',
+			'queryRequest' : 'CREATE TABLE category (id integer primary key autoincrement, name varchar2, description varchar2);'
+		};
+appez.mmi.executeDbQuery(DB_CREATE_TABLE_REQ, globeScope.onClickDbCreateTableCallback, globeScope);
+
+Response callback:
+function onClickDbCreateTableCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbCreateTableCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Insert DB record
+Request:
+var DB_INSERT_RECORD_REQ = {
+		'appDB':'appez_demo_db',
+		'queryRequest' : 'insert into category(name,description) values("Sample Key","Sample Value");'
+	};
+appez.mmi.executeDbQuery(insertRecordQuery, globeScope.onClickDbInsertRecordCallback, globeScope);
+
+Response callback:
+function onClickDbInsertRecordCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbInsertRecordCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Read DB record
+Request:
+var DB_READ_RECORD_REQ = {
+			'appDB':'appez_demo_db',
+			'queryRequest' : 'select * from category'
+		};
+appez.mmi.executeReadDbQuery(DB_READ_RECORD_REQ, globeScope.onClickDbReadRecordCallback, globeScope);
+
+Response callback:
+function onClickDbReadRecordCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbReadRecordCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+	if(smartEventResponse.getExceptionType()==appez.mmi.constant.DB_TABLE_NOT_EXIST_ERROR){
+		appez.mmi.log('***********TABLE DOES NOT EXISTS');
+	}
+}
+
++ Delete table record
+var DB_DELETE_RECORD_REQ = {
+			'appDB':'appez_demo_db',
+			'queryRequest' : 'DELETE FROM category WHERE name="Sample Key";'
+		};
+Request:
+	if(nameToDelete.length>0){
+		var deleteRecordQuery = {
+				'appDB':'appez_Revamp_db',
+				'queryRequest' : 'DELETE FROM category WHERE name="Sample Key";'
+			};
+		appez.mmi.executeDbQuery(deleteRecordQuery, globeScope.onClickDbDeleteRecordCallback, globeScope);
+	}
+
+Response callback:
+function onClickDbDeleteRecordCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbDeleteRecordCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Drop table
+Request:
+var DB_DROP_TABLE_REQ = {
+			'appDB':'appez_demo_db',
+			'queryRequest' : 'drop table category;'
+		};
+appez.mmi.executeDbQuery(DB_DROP_TABLE_REQ, globeScope.onClickDbDropTableCallback, globeScope);
+
+Response callback:
+function onClickDbDropTableCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbDropTableCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ DB connection close
+Request:
+var DB_CLOSE_REQ = {
+			'appDB':'appez_demo_db'
+		};
+appez.mmi.closeDatabase(DB_CLOSE_REQ, globeScope.onClickDbCloseCallback, globeScope);
+
+Response callback:
+function onClickDbCloseCallback(smartEventResponse) {
+	appez.mmi.log('In onClickDbCloseCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}

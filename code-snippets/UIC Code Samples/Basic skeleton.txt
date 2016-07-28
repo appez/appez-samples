@@ -1,0 +1,11 @@
+<html>
+  <body>
+    <div class="container uic-page active-page">
+      <div class="scroll-wrap">
+        <div class="content">
+          <!-- here goes the content layout of the page  -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

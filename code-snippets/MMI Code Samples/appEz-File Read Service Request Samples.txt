@@ -1,0 +1,52 @@
+Code Snippets:
+
+				FILE READ SERVICE:
++ File read
+Request:
+var FILE_READ_REQ = {
+			'fileName':'web_assets/app/appez.conf'
+		};
+appez.mmi.readFileContents(FILE_READ_REQ, globeScope.onClickFileReadCallback, globeScope);
+	
+Response callback:
+function onClickFileReadCallback(smartEventResponse) {
+	appez.mmi.log('In onClickFileReadCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Folder read
+Request:
+var FOLDER_READ_REQ = {
+			'fileName':'web_assets/app',
+			'fileFormatToRead':'.js',
+			'readFilesInSubfolders':true
+		};
+appez.mmi.readFolderContents(FOLDER_READ_REQ, globeScope.onClickFolderReadCallback, globeScope);
+
+Response callback:
+function onClickFolderReadCallback(smartEventResponse){
+	appez.mmi.log('In onClickFolderReadCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Extract archive file
+Request:
+var FILE_ARCHIVE_REQ = {
+			'fileName':'web_assets/app'
+		};
+appez.mmi.unarchiveFile(FILE_UNARCHIVE_REQ, globeScope.onClickExtractArchiveFileCallback, globeScope);
+
+Response callback:
+function onClickExtractArchiveFileCallback(smartEventResponse){
+	appez.mmi.log('In onClickExtractArchiveFileCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Create Archive file
+Request:
+var FILE_UNARCHIVE_REQ = {
+			'fileName':'web_assets/layouts.zip'
+		};
+appez.mmi.archiveResource(FILE_ARCHIVE_REQ, globeScope.onClickCreateArchiveFileCallback, globeScope);
+
+Response callback:
+function onClickCreateArchiveFileCallback(smartEventResponse){
+	appez.mmi.log('In onClickCreateArchiveFileCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}

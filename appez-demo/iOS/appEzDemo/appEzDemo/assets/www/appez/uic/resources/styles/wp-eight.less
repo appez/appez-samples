@@ -1,0 +1,722 @@
+@import "../../uic-dependency/bootstrap/less/bootstrap.less";
+@icon-font-path: "../../appez/uic/resources/fonts/"; // dev path
+
+//@icon-font-path: "../fonts/"; // prod path
+  
+ //variables
+
+
+//global
+
+@white: #fff;
+
+@black: #000;
+@green: #53d76a;
+
+
+
+@font-family-sans-serif: "Segoe WP";
+@input-color: @black;
+@brand-primary: @white;
+@label-color: @black;
+@border-radius-base: 0;
+@font-size-base: 12pt;
+
+@grid-float-breakpoint: 320px; // need to test for more scenerio
+
+@fixed-bar-bg: @gray-light;
+
+@in-animation-duration: 300ms;
+@out-animation-duration: 300ms;
+
+@title-bar-height: 44px;
+@group-space: 30px;
+@content-padding: 35px;
+
+//buttons
+
+@btn-default-bg:  @black;
+@btn-default-border: @border-color;
+
+@focus-bg: #00ccff;
+@border-color: @white;
+
+.border-radius(@radius) {
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);  
+}
+
+.appearance(@appearance ) {
+  appearance: @appearance;
+  -webkit-appearance: @appearance; /* Safari and Chrome */  
+}
+
+
+@-ms-viewport {
+      
+    width:device-width;
+    height:device-height;
+    user-zoom: fixed; /* Doesn't allow user to zoom the screen */
+    max-zoom: 1;
+    min-zoom: 1;
+}
+
+body{  
+    
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;  
+  -ms-text-size-adjust: none; 
+  height: 100%;  
+  color: @white;
+  background-color: @black;  
+   
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=45); /* Creates shadow for element in specified direction */
+    -ms-tap-highlight-color: rgba(0, 0, 0, 0);  /* Prevent any object from being highlighted upon touch event */
+    -ms-touch-callout: none;  /* Disables the default callout shown when you touch and hold a touch target e.g details on link touch */
+    overflow: hidden;
+  -ms-content-zooming: none;  /* Does't allow user to inflate the size of the text */
+    -ms-user-select: none;  /* Doesn't allow user to select the text or any element on screen */  
+    -ms-overflow-scrolling: none; 
+  -ms-touch-action: none; /* Direct all pointer events to JavaScript code. Specifies whether and how a given region can be manipulated by the user */  
+}
+
+
+.uic-wrapper{
+  
+  
+  
+}
+
+ .scroll-wrap{
+    
+    position: absolute;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+    
+  }
+  
+  .content{
+    
+    width: 100%;
+    height: 100%;
+    padding-top: 55px;
+    overflow-y: scroll;
+    -ms-overflow-scrolling: touch;
+    -ms-overflow-style: none; /* Sets the scrolling behavior for elements that overflow */
+ }
+  
+
+
+
+.uic-page{       
+     display: none;
+     overflow-x: hidden;
+     padding-left: 0;
+     padding-right: 0;
+	 position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;    
+     height: 100%;
+    /* -webkit-transform: translate3d(0, 0, 0);
+     transform: translate3d(0, 0, 0); */
+}
+
+.uic-loader{
+  width: 50px;
+  height: 50px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJsb2FkZXItMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiCiAgIHdpZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNDAgNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgogIDxwYXRoIG9wYWNpdHk9IjAuMiIgZmlsbD0iIzAwMCIgZD0iTTIwLjIwMSw1LjE2OWMtOC4yNTQsMC0xNC45NDYsNi42OTItMTQuOTQ2LDE0Ljk0NmMwLDguMjU1LDYuNjkyLDE0Ljk0NiwxNC45NDYsMTQuOTQ2CiAgICBzMTQuOTQ2LTYuNjkxLDE0Ljk0Ni0xNC45NDZDMzUuMTQ2LDExLjg2MSwyOC40NTUsNS4xNjksMjAuMjAxLDUuMTY5eiBNMjAuMjAxLDMxLjc0OWMtNi40MjUsMC0xMS42MzQtNS4yMDgtMTEuNjM0LTExLjYzNAogICAgYzAtNi40MjUsNS4yMDktMTEuNjM0LDExLjYzNC0xMS42MzRjNi40MjUsMCwxMS42MzMsNS4yMDksMTEuNjMzLDExLjYzNEMzMS44MzQsMjYuNTQxLDI2LjYyNiwzMS43NDksMjAuMjAxLDMxLjc0OXoiLz4KICA8cGF0aCBmaWxsPSIjMDAwIiBkPSJNMjYuMDEzLDEwLjA0N2wxLjY1NC0yLjg2NmMtMi4xOTgtMS4yNzItNC43NDMtMi4wMTItNy40NjYtMi4wMTJoMHYzLjMxMmgwCiAgICBDMjIuMzIsOC40ODEsMjQuMzAxLDkuMDU3LDI2LjAxMywxMC4wNDd6Ij4KICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIKICAgICAgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIgogICAgICB0eXBlPSJyb3RhdGUiCiAgICAgIGZyb209IjAgMjAgMjAiCiAgICAgIHRvPSIzNjAgMjAgMjAiCiAgICAgIGR1cj0iMC41cyIKICAgICAgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDwvcGF0aD4KICA8L3N2Zz4=) center;
+  background-repeat: no-repeat;
+}
+
+
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+   
+.active-page{
+     display: block;
+}
+
+
+
+/* Generic class for displaying ellipsis after configured width is reached, User need to specify width of the element */
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flex-box{
+    display: -webkit-box;    
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;  /* Defines direction how elements are placed in container  */   
+    -webkit-box-orient: horizontal;   /* Defines how elements are stacked in container i.e horizontally or vertically */   
+    
+    -webkit-flex-direction: row;  /* Defined whether elements are arranged in row or column */
+    -ms-flex-direction: row;
+    flex-direction: row;
+    
+    -webkit-flex-wrap: nowrap;  /* Defines whether container is single line or multi line */
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    
+    -webkit-box-pack: start;  /* Specifies where child elements of a box are placed when the box is larger than the size of the children */ 
+    -ms-flex-pack: start;
+    
+     -webkit-justify-content: flex-start; /* Defines how a browser distributes available space between and around elements when aligning flex items */
+    justify-content: flex-start;
+    
+   -webkit-align-content: stretch;  /*  Aligns a flex container's lines within the flex container when there is extra space on the cross-axis. This property has no effect on single line flexible boxes */
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    
+   -webkit-box-align: center; /* Specifies how to align the child elements of a box. */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+    
+   
+}
+
+.v-flex{
+  
+   -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-item{   
+  
+  -webkit-box-ordinal-group: 1; /* Specifies the display order of the child elements of a box */
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    
+   -webkit-box-flex: 0; /* Specifies whether the child elements of a box is flexible or inflexible in size */
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    
+    -webkit-align-self: auto; /*  It overrides the align-items value for specific flex items */
+    -ms-flex-item-align: auto;
+    align-self: auto;
+      
+  }
+  
+/* Wrapper for center aligning the child elements of flex container */  
+  
+   .center-align{
+  
+   -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center;
+}
+
+
+/* Wrapper for right aligning the child elements of flex container */
+
+ .right-align{
+  
+   -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-box-pack: end; 
+    -ms-flex-pack: end;
+}
+
+
+.wp-eight{
+  
+.glyphicon{
+  
+  color: @black;
+}
+
+.back-page{
+ pointer-events: none;
+}
+
+.app-icon{
+  height: 25px;
+  margin-top: -10px;
+}
+
+.tile{
+   &:extend(.flex-box); 
+   &:extend(.v-flex); 
+   &:extend(.center-align);
+}
+
+.fixfixed .navbar-fixed-top{
+  position: absolute;
+}
+
+
+.group{
+
+    margin-bottom: @group-space;
+    padding: initial;  
+    padding-left: 15px;
+   
+    border-left: initial;
+    border-right: initial;  
+    overflow: visible;
+    line-height: 1.5em;
+    
+    .form-control, textarea.form-control{
+    
+       width: 96%;
+    }
+}
+
+
+
+
+// top bar and bottom bar
+
+
+.icon-holder, .action-icon-holder, .divider, .back-icon{
+  display: none;
+}
+
+
+.navbar{
+  
+  background-color: @black;
+ 
+ 
+ .navbar-brand{
+    
+    line-height: 10px;
+ }
+}
+
+
+.navbar-fixed-top{
+  
+ 
+  position: fixed;
+  top:0; 
+  line-height: 44px;
+  width: 100%;
+  padding-top: 0;  
+  z-index: 10;  
+  
+ small{
+   font-size: 65%;
+ }
+ 
+ &:nth-child(2){   
+   top: 50px;   
+ }
+  
+}
+
+.navbar-fixed-bottom{
+  height: 44px;
+  text-align: center;  
+  z-index: 100; 
+
+ small{
+   font-size: 65%;
+ }
+  
+}
+
+
+
+
+
+.app-icon{
+  
+position: absolute;
+display: inline-block;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+font-size: 17px;
+padding: 0;
+font-weight: 300;
+height: 44px;
+line-height: 44px;
+color: @gray-light;
+max-width: 140px;
+padding-left: 23px;
+
+background-position: left bottom;
+background-size: 24px 44px;
+background-repeat: no-repeat;
+    
+}
+
+
+ .ios-back {
+
+ &:extend(.app-icon); 
+  
+top: 7px;
+left: 0;
+background-image: url(../img/backBtn.svg);
+    
+}
+
+.icon-forward {
+
+ &:extend(.app-icon); 
+
+background-image: url(../img/listArrow.svg);
+color: @gray-light;
+top: 9px;
+right: 3px;
+    
+}
+ 
+
+
+
+
+
+// Buttons
+
+.btn-default{
+
+ .appearance(button);
+ .border-radius(0);
+ 
+    padding: 8px;     
+    color: @white;
+    background-color: @black;
+    width: 96%;
+  border: 2px solid @white;
+
+  &:focus, &:hover{
+  
+     outline: 0;
+  }
+    
+  
+  
+  &:active {  
+         
+     outline: 0;
+    .box-shadow(none);
+    background-color: @focus-bg;
+     
+  }
+}
+
+.btn-link{
+  
+ 
+  &:active{
+  
+    text-decoration: none;
+  }
+  
+
+}
+
+.divider{
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+
+// input
+
+.form-control, textarea.form-control{
+  
+   .appearance(field); 
+   .box-shadow(none);
+   .border-radius(0);
+   
+   display: block;
+   position: relative;
+
+   
+   font-weight: 300; 
+   padding: 8px;     
+   
+   border: initial;
+   
+  &:focus,
+  &:active,
+  &.active{      
+      
+  }  
+ 
+}
+
+// textarea
+
+textarea.form-control{
+ 
+  
+  min-height: 70px;
+  padding: 5px; 
+  
+  &:focus,
+  &:active,
+  &.active{      
+      
+  }  
+}
+
+
+
+
+// single liner list
+
+.list-group.group, .media-list.group{
+   padding-left: 0;
+   font-weight: 600;   
+
+}
+
+.media,.list-group-item{
+ border-color: transparent;  
+ background-color: @black;
+ padding: initial;
+ padding-left: 15px;
+ padding-top: 7px;
+ margin-bottom: initial;
+ font-size: 2rem; 
+ 
+
+ &:active{     
+    
+     background-color: @black; 
+  }
+  
+  .ellipsis{
+    width: 91%;
+	padding-bottom: 1px;
+  } 
+  
+
+}
+
+
+
+
+//  multi list with thumbnail
+
+
+
+.media{
+ 
+ margin-top: 0;
+ &:active{    
+    
+     background-color: @black; 
+  } 
+
+ 
+ .media-object{
+   
+ }
+ 
+  
+}
+
+
+.media-heading{  
+  margin: 0;
+  padding-bottom: 1px;
+}
+
+.media-desc{
+  
+  font-size: 1.35rem;
+  color: @gray-light;
+}
+
+// check box, radio
+
+
+ .checkbox, .radio{   
+
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  
+  &:focus{
+    
+    outline: none;
+    outline-offset: initial;
+  }
+  
+  &:checked {     
+    
+    &:after{     
+       
+    }
+  }
+  
+}
+
+
+.footer-offset{
+  
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.inline-label{
+ display: inline-block;
+ padding-left: 5px;
+ vertical-align: top;
+}
+
+
+.subgroup{
+   padding: 0 15px;
+margin-bottom:8px;
+color: @white;
+}
+
+.page-title,.screen-title{
+ 
+ padding-top: 10px;
+ font-weight: normal;
+}
+
+.screen-title{  
+  font-size: 3rem; 
+  margin-left: 0;
+  margin-bottom: 15px;
+}
+
+.detail-page{
+  
+  padding-top: 30px;
+  padding-left: 10;
+  padding-right: 10px;
+  -ms-overflow-x: hidden;
+  
+  .screen-title{
+    padding-left: 0;
+    margin-top: 15px;
+  }
+}
+
+
+
+/*targeting and animation*/
+
+
+
+.uic-page{
+  
+   transform-origin: 0% 50%;
+   -ms-transform-origin: 0% 50%;
+    backface-visibility: visible;
+    transform: translate3d(0,0,0);
+
+ 
+}
+
+
+.turnstile(@animationName, @animationDuration, @animationDelay, @animationClass ) {
+  
+     animation: @animationDuration @animationName @animationClass;    
+    -ms-animation: @animationDuration @animationName @animationClass;      
+    
+     animation-fill-mode: backwards;  
+     animation-delay: @animationDelay; 
+	
+
+	 //overflow: visible !important; // needed for animation container to be proberly animated
+}
+
+.keyframe(@className, @fromAngle, @toAngle, @fromOpacity, @toOpacity){
+  
+  @keyframes @className {
+    0% { 
+            
+           transform: translate3d(0,0,0) perspective(500px) rotate3d(0, 1, 0, @fromAngle);          
+       
+           
+       }
+    100% { 
+          
+           transform: translate3d(0,0,0) perspective(500px) rotate3d(0, 1, 0, @toAngle);          
+       
+      
+       }
+  }
+  
+  
+}
+
+
+
+.keyframe(forward-out, 0deg, -50deg, 1, 0);
+
+.forward-out {   
+    
+    .turnstile(cubic-bezier(0.4925,0.01,0.7675,-0.01), @out-animation-duration, 0ms ,forward-out);   
+}
+
+.keyframe(forward-in, 90deg, 0deg, 0, 1);
+
+.forward-in {   
+    
+    .turnstile(cubic-bezier(0.01,0.975,0.4775,0.9775), @in-animation-duration,0ms ,forward-in);   
+	
+}
+
+
+
+.keyframe(backward-out, 0deg, 80deg, 1, 0);
+
+.backward-out {   
+    
+    .turnstile(cubic-bezier(0.4925,0.01,0.7675,-0.01), @out-animation-duration, 0s, backward-out);   
+}
+
+
+
+.keyframe(backward-in, -50deg, 0deg, 0, 1);
+
+.backward-in {   
+    
+    .turnstile(cubic-bezier(0.01,0.975,0.4775,0.9775), @in-animation-duration, 0ms, backward-in);   
+}
+
+
+.wp-opaque{  
+  opacity:0;
+  display: block;
+}
+
+
+
+
+
+  
+}
+
+
+//@import "../../../../app/resources/styles/app.less"; uic path
+@import "../../../../app/smartphone/resources/styles/app.less"; // smart web path
+
+
+
+
+
+

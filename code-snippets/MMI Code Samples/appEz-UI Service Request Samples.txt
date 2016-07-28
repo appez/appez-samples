@@ -1,0 +1,127 @@
+Code Snippets:
+
+				UI SERVICE:
++ Show Loading Indicator
+Request:
+var UI_LOADING_INDICATOR_REQ = {
+			'message' : 'My first loading indicator...'
+		};
+appez.mmi.showProgressDialog(UI_LOADING_INDICATOR_REQ, globeScope.showDialogCallback, globeScope);
+
+Response callback:
+function showDialogCallback(smartEventResponse){
+	appez.mmi.log('In showDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Hide Loading indicator
+Request:
+appez.mmi.hideProgressDialog({'message' : ''},globeScope.hideDialogCallback, globeScope);
+
+Response callback:
+function hideDialogCallback(smartEventResponse) {
+	appez.mmi.log('In hideDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Information dialog
+Request:
+var UI_INFO_DIALOG_REQ = {
+			'message' : 'An important message'
+		};
+appez.mmi.showInformationDialog(UI_INFO_DIALOG_REQ, globeScope.onClickShowInfoDialogCallback, globeScope);
+
+Response callback:
+function onClickShowInfoDialogCallback(smartEventResponse) {
+	appez.mmi.log('In onClickShowInfoDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Decision Dialog
+Request:
+var UI_DECISION_DIALOG_REQ = {
+			'message' : 'Are you sure you want to quit?'/*,
+			'positiveBtnText': 'Sure',
+			'negativeBtnText': 'No thanks!'*/
+		};
+appez.mmi.showDecisionDialog(UI_DECISION_DIALOG_REQ, globeScope.onClicksShowDecisionDialogCallback, globeScope);
+
+Response callback
+function onClicksShowDecisionDialogCallback(smartEventResponse) {
+	appez.mmi.log('In onClicksShowDecisionDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Single Selection Dialog
+Request:
+var UI_SINGLE_LIST_REQ = {
+			'message' : [
+			   {
+				   'item': 'Item 1'
+			   },
+			   {
+				   'item': 'Item 2'
+			   },
+			   {
+				   'item': 'Item 3'
+			   }
+			 ]
+		};
+appez.mmi.showSelectionList(UI_SINGLE_LIST_REQ, globeScope.onClickShowSingleSelectionDialogCallback, globeScope);
+
+Response callback:
+function onClickShowSingleSelectionDialogCallback(smartEventResponse) {
+	appez.mmi.log('In onClickShowSingleSelectionDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Single Selection radio dialog
+Request:
+var UI_SINGLE_LIST_RADIO_REQ = {
+			'message' : [
+			   {
+				   'item': 'Item 1'
+			   },
+			   {
+				   'item': 'Item 2'
+			   },
+			   {
+				   'item': 'Item 3'
+			   }
+			]
+		};
+appez.mmi.showSelectionListRadio(UI_SINGLE_LIST_RADIO_REQ, globeScope.onClickShowSingleSelectionRadioDialogCallback, globeScope);
+
+Response callback:
+function onClickShowSingleSelectionRadioDialogCallback(smartEventResponse) {
+	appez.mmi.log('In onClickShowSingleSelectionRadioDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Multi-selection dialog
+Request:
+var UI_MULTI_SELECTION_REQ = {
+			'message' : [
+			   {
+				   'item': 'Item 1'
+			   },
+			   {
+				   'item': 'Item 2'
+			   },
+			   {
+				   'item': 'Item 3'
+			   }
+			]
+		};
+appez.mmi.showMultiSelectionList(UI_MULTI_SELECTION_REQ, globeScope.onClickShowMultiSelectionDialogCallback, globeScope);
+
+Response callback:
+function onClickShowMultiSelectionDialogCallback(smartEventResponse) {
+	appez.mmi.log('In onClickShowMultiSelectionDialogCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
+
++ Show Date picker
+Request:
+var UI_DATE_PICKER_REQ = {
+			'message' : 'null'
+		};
+appez.mmi.showDatePicker(UI_DATE_PICKER_REQ, globeScope.onClickShowDatePickerCallback, globeScope);
+
+Response callback:
+function onClickShowDatePickerCallback(smartEventResponse) {
+	appez.mmi.log('In onClickShowDatePickerCallback ...........'+JSON.stringify(smartEventResponse.getServiceResponse()));
+}
