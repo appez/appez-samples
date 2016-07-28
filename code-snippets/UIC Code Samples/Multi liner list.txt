@@ -1,0 +1,9 @@
+<ul class="media-list group ">
+  <li class="media">
+    <div class="media-body disclosure">
+      <div class="media-heading ellipsis">      Irene Ros     </div>
+      <div class="ellipsis media-desc">    Cras sit amet nibh libero    </div>
+      <hr class="divider"/>
+    </div>
+  </li>
+</ul>

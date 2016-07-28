@@ -1,0 +1,7 @@
+<ul class="list-group group">
+  <li class="list-group-item disclosure ">
+   <img class="media-object pull-left" src="appez/uic/resources/img/icon_user.png"> </a>
+    <div class="ellipsis">      Cras justo odio     </div>
+    <hr class="divider"/>
+  </li>
+</ul>

@@ -1,0 +1,11 @@
+1. uic.navigate.to(pageId, controllerObj) 
+	Enables user to navigate from one screen to another. It takes two parameter, first one is the id of the screen div to navigate to and second is instance of controller.
+	
+2. uic.navigate.back()
+	Shorthand method for navigating to previous screen, if user is on the first screen and this method is called user will be for ask for app exit confirmation.
+	
+3. uic.navigate.firstScreen() 
+	User can call this function to navigate to first screen from any page in application.
+	
+4. uic.navigate.getPageId()
+	It takes page state which can be either of active, back or next to get the id of corresponding positioned page in dom. next parameter for this function is not supported in UI flows where screen navigation is asynchronous and user can randomly go to any page such as tile flow where user can tap on any tile to navigate, in that case it will be impossible to know what will be the next page.

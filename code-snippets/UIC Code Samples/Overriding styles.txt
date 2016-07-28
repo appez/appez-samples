@@ -1,0 +1,22 @@
+1. UIC apply platform wrapper for easy overrides of styles, based on specific platform they are on body tag:
+	o	For Android GB (2.3) – Android Honeycomb (3.2) wrapper is android-gb
+	o	For Android ICS (4) and above wrapper is android-ics
+	o	For iOS (5) – iOS(6) wrapper is ios-six
+	o	For iOS (7) and above wrapper is ios-seven
+	o	For  WP8 and above wrapper is wp-eight
+	o	For Web default wrapper is android-ics 
+
+2. LESS Overrides :
+
+	@green: #99530;
+	.android-ics{
+		.btn{
+			 background-color: @green;
+	   }
+	}
+
+3. CSS Overrides : 
+	
+	.android-ics .btn{
+		background-color: green;
+	}

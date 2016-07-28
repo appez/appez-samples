@@ -1,0 +1,12 @@
+<ul class="media-list group ">
+  <li class="media">
+    <a class="pull-left" href="#">      
+      <img class="media-object" src="appez/uic/resources/img/icon_user.png">      
+    </a>
+    <div class="media-body disclosure">
+      <div class="media-heading ellipsis">      Irene Ros     </div>
+      <div class="ellipsis media-desc">    Cras sit amet nibh libero    </div>
+      <hr class="divider"/>
+    </div>
+  </li>
+</ul>

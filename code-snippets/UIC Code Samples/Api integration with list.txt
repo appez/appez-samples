@@ -1,0 +1,25 @@
+1. For displaying response in list, create a list item template in ScreenTemplates.xml. In list item tempalte, keep html that will be changing with list data
+	<screen>
+		<name>ListItemTemplate</name>
+        <content>
+		<![CDATA[
+            <li class="media">
+				<div class="media-body disclosure">
+				  <div class="media-heading ellipsis">[ID]</div>
+				  <div class="ellipsis media-desc">[NAME]</div>
+				  <hr class="divider"/>
+				</div>
+			</li>
+		]]>
+        </content>
+    </screen>
+	
+2. Iterate through list and prepare list item with data
+	var listData = "";
+	$.each(arrayList,function(index,listItem){
+		listData = listData + appName.view.ListItemTemplate.replace('[ID]',listItem.id)
+						.replace('[NAME]',listItem.name);	
+	});
+	
+3. Insert the list data into list container
+	$("#HomeDiv .list-content").html(listData);

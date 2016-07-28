@@ -1,0 +1,91 @@
+<div class="navbar navbar-fixed-top">
+	<div class="container">
+
+		<div class="navbar-header">
+			<div class="navbar-brand back-page">
+				<a class="icon-holder" href="#">
+					<span class="back-icon"> &lsaquo;  </span> 
+					
+				</a>
+				<label class="page-title  screen-title">UI Component</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+			            
+<div class="scroll-wrap">
+	<div class="content multi-bar">			      
+		<div class="group">
+			<div class="form-group">
+				<p class="subgroup"> Text Input </p>
+				<input  type="text" class="form-control" placeholder="">
+			</div>
+			<div class="form-group">
+				<p class="subgroup"> Text Area </p>
+				<textarea placeholder="" class="form-control" rows="3"></textarea>
+
+			</div>
+			<div class="form-group">
+				<p class="subgroup"> Button </p>
+				<button type="button" class="btn btn-default btn-block">
+					Button
+				</button>
+			</div>
+
+			<div class="form-group">
+				<p class="subgroup"> Checkbox </p>
+				<input class="checkbox" type="checkbox">
+				<span class="inline-label"> Check it </span>
+			</div>
+			<div class="form-group">
+				<p class="subgroup"> Radio </p>
+				<input class="radio" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+				<span class="inline-label">Yes </span>
+			</div>	
+			
+			<div class="form-group">
+				<p class="subgroup"> Single liner </p>
+				<ul class="list-group">
+				 <li class="list-group-item disclosure nav-next">
+					<div class="ellipsis"> Cras sit amet nibh libero. </div>
+					<hr class="divider"/>
+				 </li
+				</ul>
+		   </div>
+		   
+		   <div class="form-group"> 
+			   <p class="subgroup"> Multi Liner </p>
+				<ul class="media-list group">
+				<li class="media nav-next">					
+					<div class="media-body disclosure">
+						<div class="media-heading ellipsis">Nulla vel metus scelerisque ante sollicitudin commodo</div>
+						<div class="ellipsis media-desc">
+							Cras sit amet nibh libero.
+						</div>
+						<hr class="divider"/>
+					</div>
+				</li>
+				</ul>
+			</div>	
+			
+            <div class="form-group">
+				<p class="subgroup"> Multi Line Thumb </p>
+                <ul class="media-list group ">
+                    <li class="media nav-next">
+                        <a class="pull-left" href="#"> <img class="media-object" src="appez/uic/resources/img/icon_user.png"> </a>
+                        <div class="media-body disclosure">
+                            <div class="media-heading ellipsis">Nulla vel metus scelerisque ante sollicitudin commodo</div>
+                            <div class="ellipsis media-desc">
+                                Cras sit amet nibh libero.
+                            </div>
+                            <hr class="divider"/>
+                        </div>
+                    </li>
+                </ul>
+		      </div>
+	   </div>
+    </div>
+</div>
+                
+                
